@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var testView: UIView!
+    var testViewScale: CGFloat!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +32,11 @@ class ViewController: UIViewController {
         doubleTapGesture.numberOfTapsRequired = 2
         tapGesture.require(toFail: doubleTapGesture)
         self.view.addGestureRecognizer(doubleTapGesture)
+        
+        let pinchGesture: UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(pinchGesture:)))
+        
+        self.view.addGestureRecognizer(pinchGesture)
+        
     }
     
     func randomColor() -> UIColor {
@@ -50,6 +56,16 @@ class ViewController: UIViewController {
     @objc func handleDoubleTapGesture(doubleTapGesture: UITapGestureRecognizer){
         print("double tap  \(doubleTapGesture.location(in: self.view)) \n")
         self.testView.transform = CGAffineTransform(rotationAngle: CGFloat(arc4random()%10))
+    }
+    @objc func handlePinchGesture(pinchGesture: UIPinchGestureRecognizer){
+        print("handle pinch \(arc4random()%256)")
+        
+        //var newScale = 1.0 + pinchGesture.scale - self.testViewScale
+        //var currentTransform: CGAffineTransform = self.testView.transform
+        let newTransform: CGAffineTransform = CGAffineTransform(scaleX: pinchGesture.scale,
+                                                                y: pinchGesture.scale)
+        self.testView.transform = newTransform
+        self.testViewScale = pinchGesture.scale
     }
 }
 
