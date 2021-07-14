@@ -55,16 +55,23 @@ class ViewController: UIViewController {
     
     @objc func handleDoubleTapGesture(doubleTapGesture: UITapGestureRecognizer){
         print("double tap  \(doubleTapGesture.location(in: self.view)) \n")
-        self.testView.transform = CGAffineTransform(rotationAngle: CGFloat(arc4random()%10))
+        let currentTransform: CGAffineTransform = self.testView.transform
+        let newTransform: CGAffineTransform = CGAffineTransform(rotationAngle: CGFloat(arc4random()%10))
+        self.testView.transform = currentTransform.concatenating(newTransform)
     }
     @objc func handlePinchGesture(pinchGesture: UIPinchGestureRecognizer){
         print("handle pinch \(arc4random()%256)")
         
-        //var newScale = 1.0 + pinchGesture.scale - self.testViewScale
-        //var currentTransform: CGAffineTransform = self.testView.transform
-        let newTransform: CGAffineTransform = CGAffineTransform(scaleX: pinchGesture.scale,
-                                                                y: pinchGesture.scale)
-        self.testView.transform = newTransform
+        if(pinchGesture.state == UIPinchGestureRecognizer.State.began){
+            self.testViewScale = 1.0
+        }
+
+        let newScale = 1.0 + pinchGesture.scale - self.testViewScale
+        let currentTransform: CGAffineTransform = self.testView.transform
+        let newTransform: CGAffineTransform = CGAffineTransform(scaleX: newScale,
+                                                                y: newScale)
+        
+        self.testView.transform = currentTransform.concatenating(newTransform)
         self.testViewScale = pinchGesture.scale
     }
 }
