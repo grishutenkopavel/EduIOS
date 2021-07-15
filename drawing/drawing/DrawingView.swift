@@ -17,5 +17,14 @@ class DrawingView : UIView {
         context?.addRect(square)
         
         context?.fillPath()
+    
+        context?.setStrokeColor(CGColor(red: 0, green: 1, blue: 0, alpha: 1))
+        context?.setLineWidth(3.0)
+        context?.move(to: CGPoint(x: 100, y: 100))
+        context?.addLine(to: CGPoint(x: 200, y: 200))
+        
+        
+        context?.strokePath()
+        
     }
 }
