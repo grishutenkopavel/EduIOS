@@ -68,5 +68,35 @@ class DrawingView : UIView {
                               width: size.width, height: size.height)
         text.draw(in: textRect,
                   withAttributes: attributes)
+        
+        //chess board
+        let offset = 50
+        let borderWidth = 2.0
+        let rectWidth = rect.width - CGFloat((offset + Int(borderWidth)) * 2)
+        let rectHeight = rect.height - CGFloat((offset + Int(borderWidth)) * 2)
+        let maxBoardSize: CGFloat = min(rectWidth, rectHeight)
+        
+        let cellSize = Int(maxBoardSize) / 8
+        let boardSize = cellSize * 8
+        let boardRect = CGRect(x: (Int(rect.width) - boardSize) / 2,
+                               y: (Int(rect.height) - boardSize) / 2,
+                               width: boardSize, height: boardSize).integral
+        context?.setFillColor(UIColor.gray.cgColor)
+        
+        for i in 0..<8{
+            let x = (Int(rect.width) - boardSize) / 2 + cellSize * i
+            for j in 0..<8{
+                let y = (Int(rect.height) - boardSize) / 2 + cellSize * j
+                if i % 2 == 0 {
+                    if j % 2 == 0 {
+                        context?.fill(CGRect(x: x, y: y, width: cellSize, height: cellSize))
+                    } else {
+                        context?.fill(CGRect(x: x+cellSize, y: y, width: cellSize, height: cellSize))
+                    }
+                }
+            }
+        }
+        context?.setStrokeColor(UIColor.gray.cgColor)
+        context?.stroke(boardRect)
     }
 }
