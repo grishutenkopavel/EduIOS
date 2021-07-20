@@ -84,15 +84,11 @@ class DrawingView : UIView {
         context?.setFillColor(UIColor.gray.cgColor)
         
         for i in 0..<8{
-            let x = (Int(rect.width) - boardSize) / 2 + cellSize * i
+            let x = Int(boardRect.minX) + cellSize * i
             for j in 0..<8{
-                let y = (Int(rect.height) - boardSize) / 2 + cellSize * j
-                if i % 2 == 0 {
-                    if j % 2 == 0 {
+                let y = Int(boardRect.minY) + cellSize * j
+                if i % 2 != j % 2 {
                         context?.fill(CGRect(x: x, y: y, width: cellSize, height: cellSize))
-                    } else {
-                        context?.fill(CGRect(x: x+cellSize, y: y, width: cellSize, height: cellSize))
-                    }
                 }
             }
         }
