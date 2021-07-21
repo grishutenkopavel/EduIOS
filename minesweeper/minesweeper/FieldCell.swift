@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct FieldCell{
+    var isMine:Bool = false
+    var isOpen:Bool = false
+    var countOfMinesAround:Int = 0
+}
