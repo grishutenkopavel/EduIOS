@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct FieldCell{
+    static var size: Int!
     var isMine:Bool = false
-    var isOpen:Bool = false
+    var isOpen:Bool = true
     var countOfMinesAround:Int = 0
+    var point: CGPoint!
 }
