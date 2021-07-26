@@ -40,7 +40,14 @@ class ViewController: UIViewController {
         }
     }
     @objc func handleTapGesture(tapGesture: UITapGestureRecognizer){
-        print(tapGesture.location(in: game))
+        let minBoardSize = min(game.bounds.width, game.bounds.height)
+        let cellSize = minBoardSize / CGFloat(game.cntCell)
+        let xPos =  Int((tapGesture.location(in: game).x - (game.bounds.width - minBoardSize) / 2) / cellSize)
+        
+        let yPos = Int((tapGesture.location(in: game).y - (game.bounds.height - minBoardSize) / 2) / cellSize)
+        game.openCell(x: xPos, y: yPos)
+        print(xPos, yPos)
+        game.setNeedsDisplay()
     }
 }
 

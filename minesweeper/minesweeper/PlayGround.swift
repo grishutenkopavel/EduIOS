@@ -40,6 +40,13 @@ class PlayGround: UIView {
             }
         }
     }
+    func openCell(x: Int, y: Int){
+        if x >= 0 && x < cntCell && y >= 0 && y < cntCell{
+            if !map[y][x].isFlag {
+                map[y][x].isOpen = true
+            }
+        }
+    }
     func drawVoidOpenCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
         
         context?.setFillColor(CGColor(red: 0.7, green: 0.3, blue: 0.4, alpha: 1))
