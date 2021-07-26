@@ -11,7 +11,7 @@ class PlayGround: UIView {
     var sizeInPortraitMode: CGSize!
     let cntCell = 10
     var map: [[FieldCell]]!
-    
+    private var loseGame: Bool!
     override init(frame: CGRect) {
         super.init(frame: frame)
         createMap()
@@ -22,6 +22,7 @@ class PlayGround: UIView {
     }
     
     func createMap(){
+        self.loseGame = false
         var minesCount = 20
         self.map  = Array(repeating: Array(repeating: FieldCell(), count: cntCell), count: cntCell)
         while minesCount > 0 {
@@ -40,11 +41,36 @@ class PlayGround: UIView {
             }
         }
     }
-    func openCell(x: Int, y: Int){
-        if x >= 0 && x < cntCell && y >= 0 && y < cntCell{
-            if !map[y][x].isFlag {
-                map[y][x].isOpen = true
+    func showAllMap(){
+        for i in 0..<cntCell{
+            for j in 0..<cntCell{
+                map[i][j].isOpen = true
             }
+        }
+    }
+    func openCell(x: Int, y: Int){
+        if self.loseGame {
+            createMap()
+        }
+        if x >= 0 && x < cntCell && y >= 0 && y < cntCell{
+            if !map[y][x].isFlag && !map[y][x].isOpen{
+                map[y][x].isOpen = true
+                if map[y][x].countOfMinesAround == 0 {
+                    for i in -1...1{
+                        for j in -1...1{
+                            if i != 0 || j != 0{
+                                openCell(x: x+j, y: y+i)
+                            }
+                        }
+                    }
+                }
+                if map[y][x].isMine {
+                    self.loseGame = true
+                    showAllMap()
+                }
+                setNeedsDisplay()
+            }
+            
         }
     }
     func drawVoidOpenCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){

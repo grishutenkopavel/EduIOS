@@ -46,8 +46,6 @@ class ViewController: UIViewController {
         
         let yPos = Int((tapGesture.location(in: game).y - (game.bounds.height - minBoardSize) / 2) / cellSize)
         game.openCell(x: xPos, y: yPos)
-        print(xPos, yPos)
-        game.setNeedsDisplay()
     }
 }
 
