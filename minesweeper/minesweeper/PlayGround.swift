@@ -29,16 +29,32 @@ class PlayGround: UIView {
             let j = Int(arc4random()) % cntCell
             if(!map[i][j].isMine){
                 map[i][j].isMine = true
-                //add соседей
+                for di in -1...1 {
+                    for dj in -1...1{
+                        if i+di < cntCell && i+di >= 0  && j+dj < cntCell && j+dj >= 0{
+                            map[i+di][j+dj].countOfMinesAround += 1
+                        }
+                    }
+                }
                 minesCount -= 1
             }
         }
     }
-    func drawVoidCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
+    func drawVoidOpenCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
         
         context?.setFillColor(CGColor(red: 0.7, green: 0.3, blue: 0.4, alpha: 1))
         context?.setStrokeColor(CGColor(red: 0, green: 1, blue: 0, alpha: 1))
+        context?.setLineWidth(2)
+        context?.stroke(CGRect(origin: map[mapI][mapJ].point,
+                               size: CGSize(width: cellSize, height: cellSize)))
+        context?.fill(CGRect(origin: map[mapI][mapJ].point,
+                             size: CGSize(width: cellSize, height: cellSize)))
+    }
+    func drawVoidCloseCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
         
+        context?.setFillColor(CGColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1))
+        context?.setStrokeColor(CGColor(red: 0, green: 1, blue: 0, alpha: 1))
+        context?.setLineWidth(2)
         context?.stroke(CGRect(origin: map[mapI][mapJ].point,
                                size: CGSize(width: cellSize, height: cellSize)))
         context?.fill(CGRect(origin: map[mapI][mapJ].point,
@@ -51,7 +67,56 @@ class PlayGround: UIView {
                              y: Int(map[mapI][mapJ].point.y) + mineSize / 2,
                              width: mineSize, height: mineSize))
     }
-    
+    func drawCountOfMinesAround(mapI: Int, mapJ: Int, minesAround a: Int,cellSize: Int, context: CGContext?){
+        context?.setStrokeColor(CGColor(red: 1, green: 1, blue: 0, alpha: 1))
+        context?.setLineWidth(4)
+        let offset = Int(Double(cellSize) * 0.1)
+        let segmentLength = Int(Double(cellSize) * 0.35)
+
+        if a != 5 && a != 6 {
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                      y: Int(map[mapI][mapJ].point.y) + offset))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                         y: Int(map[mapI][mapJ].point.y) + offset + segmentLength))
+        }
+        if a != 2 {
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                      y: Int(map[mapI][mapJ].point.y) + 2 * offset + segmentLength))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                         y: Int(map[mapI][mapJ].point.y) + 2 * offset + 2 * segmentLength))
+        }
+        if a != 1 && a != 4 {
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                      y: Int(map[mapI][mapJ].point.y) + offset))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                         y: Int(map[mapI][mapJ].point.y) + offset))
+        }
+        if a != 1 && a != 7 {
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                      y: Int(map[mapI][mapJ].point.y) + offset + segmentLength))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                         y: Int(map[mapI][mapJ].point.y) + offset + segmentLength))
+        }
+        if a != 1 && a != 4 && a != 7{
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                      y: Int(map[mapI][mapJ].point.y) + cellSize - offset))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + cellSize - offset,
+                                         y: Int(map[mapI][mapJ].point.y) + cellSize - offset))
+        }
+        if a != 1 && a != 2 && a != 3 && a != 7 {
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                      y: Int(map[mapI][mapJ].point.y) + offset))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                         y: Int(map[mapI][mapJ].point.y) + offset + segmentLength))
+        }
+        if a == 2 || a == 6 || a == 8 {
+            context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                      y: Int(map[mapI][mapJ].point.y) + 2 * offset + segmentLength))
+            context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + offset + segmentLength,
+                                         y: Int(map[mapI][mapJ].point.y) + 2 * offset + 2 * segmentLength))
+        }
+        context?.strokePath()
+    }
     func drawMap(){
         let context = UIGraphicsGetCurrentContext()
         
@@ -66,14 +131,18 @@ class PlayGround: UIView {
             for j in 0..<cntCell{
                 map[i][j].point = CGPoint(x: (Int(self.bounds.width) - fieldSize) / 2 + cellSize * j,
                                           y: (Int(self.bounds.height) - fieldSize) / 2 + cellSize * i)
-                drawVoidCell(mapI: i, mapJ: j, cellSize: cellSize, context: context)
                 if map[i][j].isOpen {
+                    drawVoidOpenCell(mapI: i, mapJ: j, cellSize: cellSize, context: context)
                     if map[i][j].isMine {
                         drawMine(mapI: i, mapJ: j, cellSize: cellSize, context: context)
                     }
-                    if map[i][j].countOfMinesAround > 0 {
-                        //drawCountOfMinesAround()
+                    if map[i][j].countOfMinesAround > 0 && !map[i][j].isMine {
+                        drawCountOfMinesAround(mapI: i, mapJ: j,
+                                               minesAround: map[i][j].countOfMinesAround,
+                                               cellSize: cellSize, context: context)
                     }
+                } else {
+                    drawVoidCloseCell(mapI: i, mapJ: j, cellSize: cellSize, context: context)
                 }
             }
         }

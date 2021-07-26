@@ -18,6 +18,11 @@ class ViewController: UIViewController {
                                         height: self.view.frame.maxY))
         self.game.sizeInPortraitMode = CGSize(width: min(self.view.frame.maxX, self.view.frame.maxY),
                                               height: max(self.view.frame.maxX, self.view.frame.maxY))
+        
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleTapGesture(tapGesture:)))
+        game.addGestureRecognizer(tapGesture)
+        
         self.view.addSubview(game)
     }
     override func viewWillTransition(to size: CGSize,
@@ -33,6 +38,9 @@ class ViewController: UIViewController {
         if (UIDevice.current.orientation.isPortrait){
             game.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: game.sizeInPortraitMode.width, height: game.sizeInPortraitMode.height))
         }
+    }
+    @objc func handleTapGesture(tapGesture: UITapGestureRecognizer){
+        print(tapGesture.location(in: game))
     }
 }
 
