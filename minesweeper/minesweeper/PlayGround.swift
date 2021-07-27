@@ -10,8 +10,10 @@ import UIKit
 class PlayGround: UIView {
     var sizeInPortraitMode: CGSize!
     let cntCell = 10
+    let mines = 20
     var map: [[FieldCell]]!
     private var loseGame: Bool!
+    private var closedCell: Int!
     override init(frame: CGRect) {
         super.init(frame: frame)
         createMap()
@@ -23,7 +25,8 @@ class PlayGround: UIView {
     
     func createMap(){
         self.loseGame = false
-        var minesCount = 20
+        var minesCount = mines
+        closedCell = cntCell * cntCell
         self.map  = Array(repeating: Array(repeating: FieldCell(), count: cntCell), count: cntCell)
         while minesCount > 0 {
             let i = Int(arc4random()) % cntCell
@@ -55,6 +58,7 @@ class PlayGround: UIView {
         if x >= 0 && x < cntCell && y >= 0 && y < cntCell{
             if !map[y][x].isFlag && !map[y][x].isOpen{
                 map[y][x].isOpen = true
+                closedCell = closedCell! - 1
                 if map[y][x].countOfMinesAround == 0 {
                     for i in -1...1{
                         for j in -1...1{
@@ -67,6 +71,10 @@ class PlayGround: UIView {
                 if map[y][x].isMine {
                     self.loseGame = true
                     showAllMap()
+                }
+                if closedCell! == mines {
+                    print("You won")
+                    createMap()
                 }
                 setNeedsDisplay()
             }
