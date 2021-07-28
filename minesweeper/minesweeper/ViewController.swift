@@ -21,8 +21,10 @@ class ViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(handleTapGesture(tapGesture:)))
-        game.addGestureRecognizer(tapGesture)
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(longPressTapGesture:)))
         
+        game.addGestureRecognizer(tapGesture)
+        game.addGestureRecognizer(longPressGesture)
         self.view.addSubview(game)
     }
     override func viewWillTransition(to size: CGSize,
@@ -39,13 +41,23 @@ class ViewController: UIViewController {
             game.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: game.sizeInPortraitMode.width, height: game.sizeInPortraitMode.height))
         }
     }
-    @objc func handleTapGesture(tapGesture: UITapGestureRecognizer){
+    func translateWindowCoordToGame(sender: UIGestureRecognizer) -> CGPoint{
         let minBoardSize = min(game.bounds.width, game.bounds.height)
         let cellSize = minBoardSize / CGFloat(game.cntCell)
-        let xPos =  Int((tapGesture.location(in: game).x - (game.bounds.width - minBoardSize) / 2) / cellSize)
+        let xPos =  Int((sender.location(in: game).x - (game.bounds.width - minBoardSize) / 2) / cellSize)
         
-        let yPos = Int((tapGesture.location(in: game).y - (game.bounds.height - minBoardSize) / 2) / cellSize)
-        game.openCell(x: xPos, y: yPos)
+        let yPos = Int((sender.location(in: game).y - (game.bounds.height - minBoardSize) / 2) / cellSize)
+        return CGPoint(x: xPos, y: yPos)
+    }
+    @objc func handleTapGesture(tapGesture: UITapGestureRecognizer){
+        let cellCoord = translateWindowCoordToGame(sender: tapGesture)
+        game.openCell(x: Int(cellCoord.x), y: Int(cellCoord.y))
+    }
+    @objc func handleLongPressGesture(longPressTapGesture: UILongPressGestureRecognizer){
+        if longPressTapGesture.state == .began {
+            let cellCoord = translateWindowCoordToGame(sender: longPressTapGesture)
+            game.setFlag(x: Int(cellCoord.x), y: Int(cellCoord.y))
+        }
     }
 }
 

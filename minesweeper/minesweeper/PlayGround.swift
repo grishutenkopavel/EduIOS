@@ -44,6 +44,7 @@ class PlayGround: UIView {
             }
         }
     }
+    
     func showAllMap(){
         for i in 0..<cntCell{
             for j in 0..<cntCell{
@@ -51,6 +52,12 @@ class PlayGround: UIView {
             }
         }
     }
+    
+    func setFlag(x: Int, y: Int){
+        map[y][x].isFlag = !map[y][x].isFlag
+        setNeedsDisplay()
+    }
+    
     func openCell(x: Int, y: Int){
         if self.loseGame {
             createMap()
@@ -81,6 +88,7 @@ class PlayGround: UIView {
             
         }
     }
+    
     func drawVoidOpenCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
         
         context?.setFillColor(CGColor(red: 0.7, green: 0.3, blue: 0.4, alpha: 1))
@@ -91,6 +99,7 @@ class PlayGround: UIView {
         context?.fill(CGRect(origin: map[mapI][mapJ].point,
                              size: CGSize(width: cellSize, height: cellSize)))
     }
+    
     func drawVoidCloseCell(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
         
         context?.setFillColor(CGColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1))
@@ -101,6 +110,31 @@ class PlayGround: UIView {
         context?.fill(CGRect(origin: map[mapI][mapJ].point,
                              size: CGSize(width: cellSize, height: cellSize)))
     }
+    
+    func drawFlag(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
+        context?.setFillColor(CGColor(red: 1, green: 0, blue: 0, alpha: 1))
+        context?.setStrokeColor(CGColor(red: 0, green: 0, blue: 0, alpha: 1))
+        let flagSize = Int(cellSize / 2)
+//
+        context?.beginPath()
+                context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + flagSize / 2,
+                                          y: Int(map[mapI][mapJ].point.y) + flagSize / 2))
+                context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + flagSize / 2 + flagSize,
+                                             y: Int(map[mapI][mapJ].point.y) + flagSize / 2 + flagSize / 2))
+                context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + flagSize / 2,
+                                             y: Int(map[mapI][mapJ].point.y) + flagSize / 2 + flagSize))
+                context?.closePath()
+
+                context?.fillPath()
+        
+        context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + flagSize / 2,
+                                  y: Int(map[mapI][mapJ].point.y) + flagSize / 2))
+        context?.addLine(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + flagSize / 2,
+                                     y: Int(map[mapI][mapJ].point.y) + 2 * flagSize ))
+        
+        context?.strokePath()
+    }
+    
     func drawMine(mapI: Int, mapJ: Int, cellSize: Int, context: CGContext?){
         context?.setFillColor(CGColor(red: 0, green: 0, blue: 0, alpha: 1))
         let mineSize = Int(cellSize / 2)
@@ -108,6 +142,7 @@ class PlayGround: UIView {
                              y: Int(map[mapI][mapJ].point.y) + mineSize / 2,
                              width: mineSize, height: mineSize))
     }
+    
     func drawCountOfMinesAround(mapI: Int, mapJ: Int, minesAround a: Int,cellSize: Int, context: CGContext?){
         context?.setStrokeColor(CGColor(red: 1, green: 1, blue: 0, alpha: 1))
         context?.setLineWidth(4)
@@ -158,6 +193,7 @@ class PlayGround: UIView {
         }
         context?.strokePath()
     }
+    
     func drawMap(){
         let context = UIGraphicsGetCurrentContext()
         
@@ -184,10 +220,14 @@ class PlayGround: UIView {
                     }
                 } else {
                     drawVoidCloseCell(mapI: i, mapJ: j, cellSize: cellSize, context: context)
+                    if map[i][j].isFlag {
+                        drawFlag(mapI: i, mapJ: j, cellSize: cellSize, context: context)
+                    }
                 }
             }
         }
     }
+    
     override func draw(_ rect: CGRect) {
         drawMap()
         
