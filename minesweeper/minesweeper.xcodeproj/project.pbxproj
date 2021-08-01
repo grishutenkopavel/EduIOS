@@ -28,6 +28,7 @@
 		78C5F2FF26A185DE005AE8F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78C5F30526A1864E005AE8F0 /* PlayGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGround.swift; sourceTree = "<group>"; };
 		78C5F30726A189B9005AE8F0 /* FieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldCell.swift; sourceTree = "<group>"; };
+		78F60CD626B7149500F98EFD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +45,7 @@
 		78C5F2E526A185DD005AE8F0 = {
 			isa = PBXGroup;
 			children = (
+				78F60CD626B7149500F98EFD /* README.md */,
 				78C5F2F026A185DD005AE8F0 /* minesweeper */,
 				78C5F2EF26A185DD005AE8F0 /* Products */,
 			);

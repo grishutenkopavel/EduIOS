@@ -115,7 +115,7 @@ class PlayGround: UIView {
         context?.setFillColor(CGColor(red: 1, green: 0, blue: 0, alpha: 1))
         context?.setStrokeColor(CGColor(red: 0, green: 0, blue: 0, alpha: 1))
         let flagSize = Int(cellSize / 2)
-//
+        
         context?.beginPath()
                 context?.move(to: CGPoint(x: Int(map[mapI][mapJ].point.x) + flagSize / 2,
                                           y: Int(map[mapI][mapJ].point.y) + flagSize / 2))
