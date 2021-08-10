@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7890F88826B877080024BA25 /* matrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7890F88726B877080024BA25 /* matrixTests.swift */; };
+		7890F88826B877080024BA25 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7890F88726B877080024BA25 /* MatrixTests.swift */; };
 		78F14EE526B56260001F4979 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F14EE426B56260001F4979 /* AppDelegate.swift */; };
 		78F14EE726B56260001F4979 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F14EE626B56260001F4979 /* SceneDelegate.swift */; };
 		78F14EE926B56260001F4979 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F14EE826B56260001F4979 /* ViewController.swift */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		785F81E926B87052002714F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7890F88526B877080024BA25 /* matrixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = matrixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7890F88726B877080024BA25 /* matrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = matrixTests.swift; sourceTree = "<group>"; };
+		7890F88726B877080024BA25 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		7890F88926B877080024BA25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78F14EE126B56260001F4979 /* matrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = matrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F14EE426B56260001F4979 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		7890F88626B877080024BA25 /* matrixTests */ = {
 			isa = PBXGroup;
 			children = (
-				7890F88726B877080024BA25 /* matrixTests.swift */,
+				7890F88726B877080024BA25 /* MatrixTests.swift */,
 				7890F88926B877080024BA25 /* Info.plist */,
 			);
 			path = matrixTests;
@@ -215,7 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7890F88826B877080024BA25 /* matrixTests.swift in Sources */,
+				7890F88826B877080024BA25 /* MatrixTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
