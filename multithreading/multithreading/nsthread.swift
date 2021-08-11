@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+func nsthread() {
+    let thread = Thread(block: {
+        print("test 2")
+    })
+    thread.start()
+}

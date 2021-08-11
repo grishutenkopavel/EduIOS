@@ -7,5 +7,14 @@
 
 import Foundation
 
+
+pthread()
+nsthread()
+
+qos_pthread()
+qos_nsthread()
+
+
 print("Hello, World!")
+
 
