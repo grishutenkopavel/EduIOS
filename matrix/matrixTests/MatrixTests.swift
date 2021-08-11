@@ -33,6 +33,19 @@ class MatrixTests: XCTestCase {
         XCTAssertEqual(m!.matrix!, [[4, 2, -9], [3,-3, 3], [-6, -4, -6]])
         
     }
+    
+    func testDeterminantFunc(){
+        
+        let m1 = try? Matrix(twoDimensionalArray: [[-5]])
+        let m2 = try? Matrix(twoDimensionalArray: [[1, 2], [3, 4]])
+        let m3 = try? Matrix(twoDimensionalArray: [[1, -2, 3], [0,7, 4], [5, 3, -3]])
+        
+        XCTAssertEqual(m1?.determinant(), -5)
+        XCTAssertEqual(m2?.determinant(), -2)
+        XCTAssertEqual(m3?.determinant(), -178)
+        
+        
+    }
     func testPerformanceExample() throws {
         measure {
             let getRandom: () -> Double = {

@@ -102,10 +102,45 @@ class Matrix {
     //обратная матрица
     
     //определитель
-    func det(matrix: [[Double]]) -> Double {
-        return 0
+    private func det(matrix: [[Double]]) -> Double {
+        var result = 0.0
+        if matrix.count == 1 && matrix[0].count == 1{
+            result = matrix[0][0]
+        }
+        else if matrix.count == 2 && matrix[0].count == 2 {
+            result = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+        } else {
+            var newMatrix = Array(repeating: Array(repeating: 0.0,
+                                                   count: matrix[0].count - 1),
+                                  count: matrix.count - 1)
+            for i in 0..<matrix[0].count {
+                
+                var x = 1
+                for newMatrixX in 0..<newMatrix.count{
+                    
+                    var y = 0
+                    for newMatrixY in 0..<newMatrix[0].count{
+                        if i == y {
+                            y += 1;
+                        }
+                        newMatrix[newMatrixX][newMatrixY] = matrix[x][y]
+                        y += 1;
+                    }
+                    x += 1;
+                }
+                let sum = matrix[0][i] * det(matrix: newMatrix)
+                if i % 2 == 1{
+                    result += (-1) * sum
+                } else {
+                    result += sum
+                }
+            }
+        }
+        return result
     }
-    
+    func determinant() -> Double {
+        return det(matrix: self.matrix!)
+    }
     //ранк
     //проверка на равенство
     //проверка на симметрию
