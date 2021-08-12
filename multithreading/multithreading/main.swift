@@ -14,6 +14,11 @@ nsthread()
 qos_pthread()
 qos_nsthread()
 
+pthread_mutex()
+nsthread_mutex()
+
+pthread_rmutex()
+nsthread_rmutex()
 
 print("Hello, World!")
 

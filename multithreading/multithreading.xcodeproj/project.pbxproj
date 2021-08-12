@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7840290526C562CC00FF011C /* mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840290426C562CC00FF011C /* mutex.swift */; };
+		7840290726C562D800FF011C /* nsmutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840290626C562D800FF011C /* nsmutex.swift */; };
 		78B2683526C44FA80038D990 /* qos_pthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2683426C44FA80038D990 /* qos_pthread.swift */; };
 		78B2683726C44FB30038D990 /* qos_nsthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2683626C44FB30038D990 /* qos_nsthread.swift */; };
 		78B94CCD26C3EF020098B0DB /* nsthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B94CCC26C3EF020098B0DB /* nsthread.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7840290426C562CC00FF011C /* mutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mutex.swift; sourceTree = "<group>"; };
+		7840290626C562D800FF011C /* nsmutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsmutex.swift; sourceTree = "<group>"; };
 		78B2683426C44FA80038D990 /* qos_pthread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = qos_pthread.swift; sourceTree = "<group>"; };
 		78B2683626C44FB30038D990 /* qos_nsthread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = qos_nsthread.swift; sourceTree = "<group>"; };
 		78B94CCC26C3EF020098B0DB /* nsthread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsthread.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				78B9E5D826C2C1E4001A824B /* main.swift */,
 				78B9E5DF26C2C21C001A824B /* pthread.swift */,
 				78B94CCC26C3EF020098B0DB /* nsthread.swift */,
+				7840290426C562CC00FF011C /* mutex.swift */,
+				7840290626C562D800FF011C /* nsmutex.swift */,
 			);
 			path = multithreading;
 			sourceTree = "<group>";
@@ -134,6 +140,8 @@
 				78B9E5D926C2C1E4001A824B /* main.swift in Sources */,
 				78B2683726C44FB30038D990 /* qos_nsthread.swift in Sources */,
 				78B9E5E226C2C297001A824B /* pthread.swift in Sources */,
+				7840290526C562CC00FF011C /* mutex.swift in Sources */,
+				7840290726C562D800FF011C /* nsmutex.swift in Sources */,
 				78B2683526C44FA80038D990 /* qos_pthread.swift in Sources */,
 				78B94CCD26C3EF020098B0DB /* nsthread.swift in Sources */,
 			);
