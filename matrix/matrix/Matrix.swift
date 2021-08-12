@@ -142,8 +142,47 @@ class Matrix {
         return det(matrix: self.matrix!)
     }
     //ранк
+    func rank() -> Int {
+//        let m1 = try? Matrix(twoDimensionalArray: [[1,-5,3], [0, 0, 0], [9, -3, -5]])
+//        print(m1!.rank()) != 2
+        
+        var rank = 0
+        for k in 1...min(matrix!.count, matrix![0].count){
+            var minor = Array(repeating: Array(repeating: 0.0, count: k), count: k)
+            
+            for i in 0..<minor.count {
+                for j in 0..<minor[i].count {
+                    
+                    minor[i][j] = matrix![i][j]
+                    
+                }
+            }
+            if det(matrix: minor) != 0{
+                rank += 1
+            }
+        }
+        
+        return rank
+    }
     //проверка на равенство
-    //проверка на симметрию
+    func eq(anotherMatrix: Matrix) -> Bool {
+        var eq = true
+        if self.matrix!.count != anotherMatrix.matrix!.count ||
+            self.matrix![0].count != anotherMatrix.matrix![0].count{
+            eq = false
+            return eq
+        }
+        for i in 0..<self.matrix!.count{
+            for j in 0..<self.matrix![i].count{
+                if self.matrix![i][j] != anotherMatrix.matrix![i][j]{
+                    eq = false
+                    return eq
+                }
+            }
+        }
+        return eq
+    }
+    
     func show(){
         for arrIndex in matrix! {
             for number in arrIndex {
