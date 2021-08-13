@@ -20,6 +20,9 @@ nsthread_mutex()
 pthread_rmutex()
 nsthread_rmutex()
 
+condition_pthread()
+condition_nsthread()
+
 print("Hello, World!")
 
 
