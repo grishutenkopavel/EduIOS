@@ -46,6 +46,13 @@ class MatrixTests: XCTestCase {
         
         
     }
+    func testRank() {
+        let m1 = try? Matrix(twoDimensionalArray: [[1,-5,3], [9, -3, -5], [0, 0, 0]])
+        let m2 = try? Matrix(twoDimensionalArray: [[1,-5,3], [0, 0, 0], [9, -3, -5]])
+        
+        XCTAssertEqual(m1!.rank(), 2)
+        XCTAssertEqual(m2!.rank(), 2)
+    }
     func testPerformanceExample() throws {
         measure {
             let getRandom: () -> Double = {

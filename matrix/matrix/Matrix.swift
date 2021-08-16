@@ -143,8 +143,6 @@ class Matrix {
     }
     //ранк
     func rank() -> Int {
-//        let m1 = try? Matrix(twoDimensionalArray: [[1,-5,3], [0, 0, 0], [9, -3, -5]])
-//        print(m1!.rank()) != 2
         
         var rank = 0
         for k in 1...min(matrix!.count, matrix![0].count){
