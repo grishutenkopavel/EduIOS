@@ -7,7 +7,7 @@
 
 import Foundation
 
-private var condition =NSCondition()
+private var condition = NSCondition()
 private var flag = false
 
 func test_nscondition1() {

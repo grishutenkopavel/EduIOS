@@ -23,6 +23,9 @@ nsthread_rmutex()
 condition_pthread()
 condition_nsthread()
 
+spinlock()
+unfairlock()
+
 print("Hello, World!")
 
 

@@ -13,6 +13,8 @@
 		782149EC26C6D3A50099A87F /* nscondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782149EB26C6D3A50099A87F /* nscondition.swift */; };
 		7840290526C562CC00FF011C /* mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840290426C562CC00FF011C /* mutex.swift */; };
 		7840290726C562D800FF011C /* nsmutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840290626C562D800FF011C /* nsmutex.swift */; };
+		787A258726CA8C0C000A7F07 /* spinlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A258626CA8C0C000A7F07 /* spinlock.swift */; };
+		787A258926CA8D66000A7F07 /* unfairlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A258826CA8D66000A7F07 /* unfairlock.swift */; };
 		78B2683526C44FA80038D990 /* qos_pthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2683426C44FA80038D990 /* qos_pthread.swift */; };
 		78B2683726C44FB30038D990 /* qos_nsthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2683626C44FB30038D990 /* qos_nsthread.swift */; };
 		78B94CCD26C3EF020098B0DB /* nsthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B94CCC26C3EF020098B0DB /* nsthread.swift */; };
@@ -39,6 +41,8 @@
 		782149EB26C6D3A50099A87F /* nscondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nscondition.swift; sourceTree = "<group>"; };
 		7840290426C562CC00FF011C /* mutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mutex.swift; sourceTree = "<group>"; };
 		7840290626C562D800FF011C /* nsmutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsmutex.swift; sourceTree = "<group>"; };
+		787A258626CA8C0C000A7F07 /* spinlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spinlock.swift; sourceTree = "<group>"; };
+		787A258826CA8D66000A7F07 /* unfairlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = unfairlock.swift; sourceTree = "<group>"; };
 		78B2683426C44FA80038D990 /* qos_pthread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = qos_pthread.swift; sourceTree = "<group>"; };
 		78B2683626C44FB30038D990 /* qos_nsthread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = qos_nsthread.swift; sourceTree = "<group>"; };
 		78B94CCC26C3EF020098B0DB /* nsthread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsthread.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				782149E926C6C8440099A87F /* rnsmutex.swift */,
 				782149E526C6B4E20099A87F /* condition.swift */,
 				782149EB26C6D3A50099A87F /* nscondition.swift */,
+				787A258626CA8C0C000A7F07 /* spinlock.swift */,
+				787A258826CA8D66000A7F07 /* unfairlock.swift */,
 			);
 			path = multithreading;
 			sourceTree = "<group>";
@@ -153,6 +159,8 @@
 				782149E626C6B4E20099A87F /* condition.swift in Sources */,
 				78B2683726C44FB30038D990 /* qos_nsthread.swift in Sources */,
 				78B9E5E226C2C297001A824B /* pthread.swift in Sources */,
+				787A258726CA8C0C000A7F07 /* spinlock.swift in Sources */,
+				787A258926CA8D66000A7F07 /* unfairlock.swift in Sources */,
 				7840290526C562CC00FF011C /* mutex.swift in Sources */,
 				782149EA26C6C8440099A87F /* rnsmutex.swift in Sources */,
 				7840290726C562D800FF011C /* nsmutex.swift in Sources */,
