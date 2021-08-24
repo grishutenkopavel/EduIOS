@@ -26,6 +26,8 @@ condition_nsthread()
 spinlock()
 unfairlock()
 
+DispatchWorkItemTest.testNotify()
+
 print("Hello, World!")
 
 
