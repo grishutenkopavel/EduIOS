@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780FD22026D3DB360087A694 /* workitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FD21F26D3DB360087A694 /* workitem.swift */; };
 		782149E626C6B4E20099A87F /* condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782149E526C6B4E20099A87F /* condition.swift */; };
 		782149E826C6C3DB0099A87F /* rmutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782149E726C6C3DB0099A87F /* rmutex.swift */; };
 		782149EA26C6C8440099A87F /* rnsmutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782149E926C6C8440099A87F /* rnsmutex.swift */; };
@@ -15,6 +16,7 @@
 		7840290726C562D800FF011C /* nsmutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7840290626C562D800FF011C /* nsmutex.swift */; };
 		787A258726CA8C0C000A7F07 /* spinlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A258626CA8C0C000A7F07 /* spinlock.swift */; };
 		787A258926CA8D66000A7F07 /* unfairlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A258826CA8D66000A7F07 /* unfairlock.swift */; };
+		7888BA8E26D50E0600F2AB32 /* semaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7888BA8D26D50E0600F2AB32 /* semaphore.swift */; };
 		78B2683526C44FA80038D990 /* qos_pthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2683426C44FA80038D990 /* qos_pthread.swift */; };
 		78B2683726C44FB30038D990 /* qos_nsthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2683626C44FB30038D990 /* qos_nsthread.swift */; };
 		78B94CCD26C3EF020098B0DB /* nsthread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B94CCC26C3EF020098B0DB /* nsthread.swift */; };
@@ -35,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		780FD21F26D3DB360087A694 /* workitem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workitem.swift; sourceTree = "<group>"; };
 		782149E526C6B4E20099A87F /* condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = condition.swift; sourceTree = "<group>"; };
 		782149E726C6C3DB0099A87F /* rmutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rmutex.swift; sourceTree = "<group>"; };
 		782149E926C6C8440099A87F /* rnsmutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rnsmutex.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 		7840290626C562D800FF011C /* nsmutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsmutex.swift; sourceTree = "<group>"; };
 		787A258626CA8C0C000A7F07 /* spinlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spinlock.swift; sourceTree = "<group>"; };
 		787A258826CA8D66000A7F07 /* unfairlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = unfairlock.swift; sourceTree = "<group>"; };
+		7888BA8D26D50E0600F2AB32 /* semaphore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = semaphore.swift; sourceTree = "<group>"; };
 		78B2683426C44FA80038D990 /* qos_pthread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = qos_pthread.swift; sourceTree = "<group>"; };
 		78B2683626C44FB30038D990 /* qos_nsthread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = qos_nsthread.swift; sourceTree = "<group>"; };
 		78B94CCC26C3EF020098B0DB /* nsthread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nsthread.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				782149EB26C6D3A50099A87F /* nscondition.swift */,
 				787A258626CA8C0C000A7F07 /* spinlock.swift */,
 				787A258826CA8D66000A7F07 /* unfairlock.swift */,
+				780FD21F26D3DB360087A694 /* workitem.swift */,
+				7888BA8D26D50E0600F2AB32 /* semaphore.swift */,
 			);
 			path = multithreading;
 			sourceTree = "<group>";
@@ -158,12 +164,14 @@
 				78B9E5D926C2C1E4001A824B /* main.swift in Sources */,
 				782149E626C6B4E20099A87F /* condition.swift in Sources */,
 				78B2683726C44FB30038D990 /* qos_nsthread.swift in Sources */,
+				780FD22026D3DB360087A694 /* workitem.swift in Sources */,
 				78B9E5E226C2C297001A824B /* pthread.swift in Sources */,
 				787A258726CA8C0C000A7F07 /* spinlock.swift in Sources */,
 				787A258926CA8D66000A7F07 /* unfairlock.swift in Sources */,
 				7840290526C562CC00FF011C /* mutex.swift in Sources */,
 				782149EA26C6C8440099A87F /* rnsmutex.swift in Sources */,
 				7840290726C562D800FF011C /* nsmutex.swift in Sources */,
+				7888BA8E26D50E0600F2AB32 /* semaphore.swift in Sources */,
 				782149E826C6C3DB0099A87F /* rmutex.swift in Sources */,
 				782149EC26C6D3A50099A87F /* nscondition.swift in Sources */,
 				78B2683526C44FA80038D990 /* qos_pthread.swift in Sources */,

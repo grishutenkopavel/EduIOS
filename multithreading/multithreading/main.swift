@@ -28,6 +28,9 @@ unfairlock()
 
 DispatchWorkItemTest.testNotify()
 
+SemaphoreTest.testSemaphore1()
+SemaphoreTest.testSemaphore2()
+
 print("Hello, World!")
 
 
