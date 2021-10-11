@@ -8,7 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
+    
     var tableView: UITableView?
+    var fontNamesArrays = [[String]]()
+    let familyFontsArray = UIFont.familyNames
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,21 +22,37 @@ class ViewController: UIViewController, UITableViewDataSource {
         self.view.addSubview(tableView!)
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        print("namber of section in tableView")
+        return familyFontsArray.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("namber of rows in section \(section)")
-        return 100;
+        let fontNamesArray = UIFont.fontNames(forFamilyName: familyFontsArray[section])
+        fontNamesArrays.append(fontNamesArray)
+        return fontNamesArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return familyFontsArray[section]
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("cell for row at index path: {\(indexPath.section), \(indexPath.row)}")
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "c1")
-        cell.textLabel?.text = "Section = \(indexPath.section), row = \(indexPath.row)}"
-        return cell
+        let identifier = "cell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        if cell != nil {
+            print("cell reused")
+        } else {
+            cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
+        }
+        if fontNamesArrays[indexPath.section].count > indexPath.row {
+            cell?.textLabel?.text = "\(indexPath.row + 1). \(UIFont.fontNames(forFamilyName: familyFontsArray[indexPath.section])[indexPath.row])"
+        }
+        print()
+        return cell!
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        print("namber of section in tableView")
-        return 1
-    }
 }
 
