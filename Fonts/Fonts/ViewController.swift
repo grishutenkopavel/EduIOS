@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource {
     
     var tableView: UITableView?
-    var fontNamesArrays = [[String]]()
     let familyFontsArray = UIFont.familyNames
     
     override func viewDidLoad() {
@@ -30,7 +29,6 @@ class ViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("namber of rows in section \(section)")
         let fontNamesArray = UIFont.fontNames(forFamilyName: familyFontsArray[section])
-        fontNamesArrays.append(fontNamesArray)
         return fontNamesArray.count
     }
     
@@ -47,10 +45,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         } else {
             cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
         }
-        if fontNamesArrays[indexPath.section].count > indexPath.row {
-            cell?.textLabel?.text = "\(indexPath.row + 1). \(UIFont.fontNames(forFamilyName: familyFontsArray[indexPath.section])[indexPath.row])"
-        }
-        print()
+        
+        cell?.textLabel?.text = "\(indexPath.row + 1). \(UIFont.fontNames(forFamilyName: familyFontsArray[indexPath.section])[indexPath.row])"
         return cell!
     }
     
