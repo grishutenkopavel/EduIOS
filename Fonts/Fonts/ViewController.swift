@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 20,
+        tableView = UITableView(frame: CGRect(x: 0, y: 60,
                                               width: self.view.frame.maxX, height: self.view.frame.maxY) )
         tableView?.dataSource = self
         self.view.addSubview(tableView!)
@@ -45,8 +45,9 @@ class ViewController: UIViewController, UITableViewDataSource {
         } else {
             cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
         }
-        
-        cell?.textLabel?.text = "\(indexPath.row + 1). \(UIFont.fontNames(forFamilyName: familyFontsArray[indexPath.section])[indexPath.row])"
+        let fontName = UIFont.fontNames(forFamilyName: familyFontsArray[indexPath.section])[indexPath.row]
+        cell?.textLabel?.text = "\(indexPath.row + 1). \(fontName)"
+        cell?.textLabel?.font = UIFont(name: fontName, size: 16)
         return cell!
     }
     
