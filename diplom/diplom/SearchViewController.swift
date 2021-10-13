@@ -24,6 +24,23 @@ class SearchView: UIView {
         self.addGestureRecognizer(swipeUpGestureRecognizer)
         self.addGestureRecognizer(swipeDownGestureRecognizer)
         
+        //MARK: controllers
+        
+        let searchBar = UISearchBar(frame: CGRect(x: bounds.minX + 20,
+                                                  y: bounds.minY + 20,
+                                                  width: bounds.maxX - 30,
+                                                  height: bounds.minY + 50))
+        searchBar.text = "search"
+        self.addSubview(searchBar)
+        
+        let slider = UISlider(frame: CGRect(x: bounds.minX + 20,
+                                            y: bounds.minY + 70,
+                                            width: bounds.maxX - 30,
+                                            height: bounds.minY + 90))
+        self.addSubview(slider)
+        
+        
+        
     }
     
     required init?(coder: NSCoder) {
