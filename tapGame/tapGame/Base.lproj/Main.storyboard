@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="tapGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время: 30 сек" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5T-p8-H2V">
+                                <rect key="frame" x="20" y="92" width="113" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Itz-ze-zri">
+                                <rect key="frame" x="171" y="136" width="72" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Начать"/>
+                            </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" maximumValue="100" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="DKj-Gr-B9l">
+                                <rect key="frame" x="300" y="86" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="rd6-F7-KBI"/>
+                                </connections>
+                            </stepper>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uP3-mf-ii6">
+                                <rect key="frame" x="20" y="175" width="374" height="628"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1200px-Green_equilateral_triangle_point_up.svg" translatesAutoresizingMaskIntoConstraints="NO" id="LkY-pm-FIK">
+                                        <rect key="frame" x="55" y="96" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Последний счет: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="795-9U-Fmn">
+                                <rect key="frame" x="132.5" y="811" width="149" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S5T-p8-H2V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AdB-BV-HMa"/>
+                            <constraint firstItem="795-9U-Fmn" firstAttribute="top" secondItem="uP3-mf-ii6" secondAttribute="bottom" constant="8" symbolic="YES" id="BnQ-Gx-pR2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="795-9U-Fmn" secondAttribute="bottom" constant="30" id="DNw-WS-F1m"/>
+                            <constraint firstItem="795-9U-Fmn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XZa-W7-85h"/>
+                            <constraint firstItem="uP3-mf-ii6" firstAttribute="top" secondItem="Itz-ze-zri" secondAttribute="bottom" constant="8" symbolic="YES" id="YxW-BK-8DI"/>
+                            <constraint firstItem="DKj-Gr-B9l" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S5T-p8-H2V" secondAttribute="trailing" id="cua-P1-0hl"/>
+                            <constraint firstItem="Itz-ze-zri" firstAttribute="top" secondItem="DKj-Gr-B9l" secondAttribute="bottom" constant="18" id="cwc-AW-5xm"/>
+                            <constraint firstItem="uP3-mf-ii6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="fSO-pf-X5z"/>
+                            <constraint firstItem="S5T-p8-H2V" firstAttribute="centerY" secondItem="DKj-Gr-B9l" secondAttribute="centerY" id="gua-j3-CAc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uP3-mf-ii6" secondAttribute="trailing" constant="20" id="hKm-uW-uu2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DKj-Gr-B9l" secondAttribute="trailing" constant="20" id="hs3-Uw-Ud6"/>
+                            <constraint firstItem="DKj-Gr-B9l" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="42" id="jBd-ec-mzZ"/>
+                            <constraint firstItem="Itz-ze-zri" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vJx-Mz-Beh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gameFieldView" destination="uP3-mf-ii6" id="rOe-A4-RXc"/>
+                        <outlet property="timeLabel" destination="S5T-p8-H2V" id="bh8-Ld-XvV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="79.6875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="1200px-Green_equilateral_triangle_point_up.svg" width="1200" height="1040"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
