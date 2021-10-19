@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameFieldView: UIView!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var shapeX: NSLayoutConstraint!
+    @IBOutlet weak var shapeY: NSLayoutConstraint!
+    @IBOutlet weak var gameObject: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +61,10 @@ class ViewController: UIViewController {
         }
     }
     @objc private func moveImage() {
-        print("moved")
+        let maxX = gameFieldView.bounds.maxX - gameObject.frame.width
+        let maxY = gameFieldView.bounds.maxY - gameObject.frame.height
+        shapeX.constant = CGFloat(arc4random_uniform(UInt32(maxX)))
+        shapeY.constant = CGFloat(arc4random_uniform(UInt32(maxY)))
     }
     private func stopGame() {
         isGameActive = false
