@@ -10,7 +10,7 @@ import UIKit
 
 class SearchView: UIView {
     var isBottom: Bool = true
-    var heightOffset: CGFloat = 400
+    var heightOffset: CGFloat = 200
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,14 +33,34 @@ class SearchView: UIView {
         searchBar.text = "search"
         self.addSubview(searchBar)
         
+        let agelabel = UILabel(frame: CGRect(x: bounds.minX + 20,
+                                             y: bounds.minY + 70,
+                                             width: bounds.maxX - 30,
+                                             height: bounds.minY + 90))
+        agelabel.text = "Возраст: 18+"
+        self.addSubview(agelabel)
+        
         let slider = UISlider(frame: CGRect(x: bounds.minX + 20,
-                                            y: bounds.minY + 70,
+                                            y: bounds.minY + 100,
                                             width: bounds.maxX - 30,
-                                            height: bounds.minY + 90))
+                                            height: bounds.minY + 120))
         self.addSubview(slider)
         
+        let addCategoryButton = UIButton(frame: CGRect(x: bounds.minX + 20,
+                                                       y: bounds.minY + 200,
+                                                       width: 30,
+                                                       height: 30))
+        addCategoryButton.setTitle("+", for: .normal)
+        addCategoryButton.backgroundColor = .lightGray
+        self.addSubview(addCategoryButton)
         
-        
+        let searchButton = UIButton(frame: CGRect(x: bounds.minX + 50,
+                                                  y: bounds.minY + 250,
+                                                  width: bounds.maxX - 100,
+                                                  height: 30))
+        searchButton.backgroundColor = .systemBlue
+        searchButton.setTitle("Найти", for: .normal)
+        self.addSubview(searchButton)
     }
     
     required init?(coder: NSCoder) {

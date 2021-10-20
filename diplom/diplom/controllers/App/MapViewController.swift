@@ -7,11 +7,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .cyan
+        
+        let profileButton = UIButton(frame: CGRect(x: self.view.bounds.minX + 20,
+                                                   y: self.view.bounds.minY + 50,
+                                                   width: 50, height: 50))
+        profileButton.setImage(UIImage(named:"profile.png"), for: .normal)
+        self.view.addSubview(profileButton)
         
         let increaseButton = UIButton(type: .custom)
         increaseButton.frame = CGRect(x: self.view.frame.maxX - 70, y: 220, width: 50, height: 50)
@@ -29,7 +35,7 @@ class ViewController: UIViewController {
         reduceButton.addTarget(self, action: #selector(reduceMap(sender:)), for: .touchDown)
         self.view.addSubview(reduceButton)
         
-        let searchView = SearchView(frame: CGRect(x: view.frame.minX, y: view.frame.midY+325,
+        let searchView = SearchView(frame: CGRect(x: view.frame.minX, y: view.frame.midY+340,
                                            width: view.frame.maxX, height: view.frame.midY+100))
         searchView.backgroundColor = .white
         view.addSubview(searchView)
