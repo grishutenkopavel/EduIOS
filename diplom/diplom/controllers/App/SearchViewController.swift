@@ -14,16 +14,16 @@ class SearchView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        createGesture()
         
-        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeUpGestureAction(sender:)))
-        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeDownGestureAction(sender:)))
-        
-        swipeUpGestureRecognizer.direction = .up
-        swipeDownGestureRecognizer.direction = .down
-        
-        self.addGestureRecognizer(swipeUpGestureRecognizer)
-        self.addGestureRecognizer(swipeDownGestureRecognizer)
-        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addControllers(){
         //MARK: controllers
         
         let searchBar = UISearchBar(frame: CGRect(x: bounds.minX + 20,
@@ -63,8 +63,15 @@ class SearchView: UIView {
         self.addSubview(searchButton)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func createGesture() {
+        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeUpGestureAction(sender:)))
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeDownGestureAction(sender:)))
+        
+        swipeUpGestureRecognizer.direction = .up
+        swipeDownGestureRecognizer.direction = .down
+        
+        self.addGestureRecognizer(swipeUpGestureRecognizer)
+        self.addGestureRecognizer(swipeDownGestureRecognizer)
     }
     
     //MARK: search view transition
