@@ -16,12 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var shapeX: NSLayoutConstraint!
     @IBOutlet weak var shapeY: NSLayoutConstraint!
     @IBOutlet weak var gameObject: UIImageView!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         gameFieldView.layer.borderWidth = 1
         gameFieldView.layer.borderColor = UIColor.gray.cgColor
         gameFieldView.layer.cornerRadius = 5
+        updateUI()
     }
 
     @IBAction func actionButtonTapped(_ sender: UIButton) {
@@ -32,18 +34,22 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func objectTapped(_ sender: UITapGestureRecognizer) {
+        guard isGameActive else { return }
+        repositionImageWithTimer()
+        score += 1
+    }
+    
     private var isGameActive = false
     private var gameTimeLeft: TimeInterval = 0
     private var gameTimer: Timer?
     private var timer: Timer?
     private let displayDuration: TimeInterval = 2
+    private var score = 0
     
     private func startGame() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: displayDuration,
-                                     target: self, selector: #selector(moveImage),
-                                     userInfo: nil, repeats: true)
-        timer?.fire()
+        score = 0
+        repositionImageWithTimer()
         gameTimer?.invalidate()
         gameTimer = Timer.scheduledTimer(timeInterval: 1,
                                          target: self, selector: #selector(gameTimerTick),
@@ -71,9 +77,19 @@ class ViewController: UIViewController {
         updateUI()
         gameTimer?.invalidate()
         timer?.invalidate()
+        scoreLabel.text = "Последний счет \(score)"
+    }
+    
+    private func repositionImageWithTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: displayDuration,
+                                     target: self, selector: #selector(moveImage),
+                                     userInfo: nil, repeats: true)
+        timer?.fire()
     }
     
     private func updateUI() {
+        gameObject.isHidden = !isGameActive
         stepper.isEnabled = !isGameActive
         if isGameActive {
             actionButton.setTitle("Остановать", for: .normal)
