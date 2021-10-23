@@ -36,26 +36,14 @@
                                     <action selector="stepperChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="rd6-F7-KBI"/>
                                 </connections>
                             </stepper>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uP3-mf-ii6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uP3-mf-ii6" customClass="GameFieldView" customModule="tapGame" customModuleProvider="target">
                                 <rect key="frame" x="20" y="175" width="374" height="628"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1200px-Green_equilateral_triangle_point_up.svg" translatesAutoresizingMaskIntoConstraints="NO" id="LkY-pm-FIK">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="4bn-kJ-lna"/>
-                                            <constraint firstAttribute="height" constant="80" id="mEb-gk-su1"/>
-                                        </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="p8R-uM-fne" appends="YES" id="rrB-Pe-Ypf"/>
-                                        </connections>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="LkY-pm-FIK" firstAttribute="leading" secondItem="uP3-mf-ii6" secondAttribute="leading" id="Otx-Dt-xBz"/>
-                                    <constraint firstItem="LkY-pm-FIK" firstAttribute="top" secondItem="uP3-mf-ii6" secondAttribute="top" id="ZeC-7u-CPi"/>
-                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shapeSize">
+                                        <size key="value" width="80" height="80"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Последний счет: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="795-9U-Fmn">
                                 <rect key="frame" x="132.5" y="811" width="149" height="21"/>
@@ -85,10 +73,7 @@
                     <connections>
                         <outlet property="actionButton" destination="Itz-ze-zri" id="Sge-L5-py1"/>
                         <outlet property="gameFieldView" destination="uP3-mf-ii6" id="rOe-A4-RXc"/>
-                        <outlet property="gameObject" destination="LkY-pm-FIK" id="08V-xZ-T7t"/>
                         <outlet property="scoreLabel" destination="795-9U-Fmn" id="Al6-BH-zrC"/>
-                        <outlet property="shapeX" destination="Otx-Dt-xBz" id="3Xb-9O-iju"/>
-                        <outlet property="shapeY" destination="ZeC-7u-CPi" id="ofM-qY-bVc"/>
                         <outlet property="stepper" destination="DKj-Gr-B9l" id="duW-Ek-HXA"/>
                         <outlet property="timeLabel" destination="S5T-p8-H2V" id="bh8-Ld-XvV"/>
                     </connections>
@@ -104,7 +89,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1200px-Green_equilateral_triangle_point_up.svg" width="1200" height="1040"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
