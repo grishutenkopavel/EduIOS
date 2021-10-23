@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameControlView" customModule="tapGame" customModuleProvider="target">
+            <connections>
+                <outlet property="actionButton" destination="ef3-1R-Kh1" id="dYF-6A-loR"/>
+                <outlet property="stepper" destination="q6R-Zg-hp6" id="Uyn-OM-k6u"/>
+                <outlet property="timeLabel" destination="CYK-tH-H5M" id="3LJ-8c-mp9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="113"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время: 30 сек" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYK-tH-H5M">
+                    <rect key="frame" x="0.0" y="6" width="113" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef3-1R-Kh1">
+                    <rect key="frame" x="161.5" y="50" width="72" height="63"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Начать"/>
+                    <connections>
+                        <action selector="actionButtonTapped:" destination="-1" eventType="touchUpInside" id="4vm-eD-xax"/>
+                    </connections>
+                </button>
+                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" maximumValue="100" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="q6R-Zg-hp6">
+                    <rect key="frame" x="298" y="2" width="94" height="32"/>
+                    <connections>
+                        <action selector="stepperChanged:" destination="-1" eventType="valueChanged" id="hx7-Bv-Ib8"/>
+                    </connections>
+                </stepper>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="q6R-Zg-hp6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6Ta-EN-Wtf"/>
+                <constraint firstItem="q6R-Zg-hp6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CYK-tH-H5M" secondAttribute="trailing" id="Cay-nr-C7y"/>
+                <constraint firstItem="CYK-tH-H5M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IWE-qZ-zkg"/>
+                <constraint firstAttribute="trailing" secondItem="q6R-Zg-hp6" secondAttribute="trailing" id="MUV-xq-mbd"/>
+                <constraint firstAttribute="trailing" secondItem="q6R-Zg-hp6" secondAttribute="trailing" id="Q2b-pO-iq3"/>
+                <constraint firstItem="CYK-tH-H5M" firstAttribute="centerY" secondItem="q6R-Zg-hp6" secondAttribute="centerY" id="XKv-xd-3qC"/>
+                <constraint firstItem="ef3-1R-Kh1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hLq-DZ-5z5"/>
+                <constraint firstItem="ef3-1R-Kh1" firstAttribute="top" secondItem="q6R-Zg-hp6" secondAttribute="bottom" constant="18" id="qg5-hs-3p6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ef3-1R-Kh1" secondAttribute="bottom" id="y5L-EP-Pvm"/>
+                <constraint firstItem="q6R-Zg-hp6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yie-h4-2OE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="123.91304347826087" y="-166.40625"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
