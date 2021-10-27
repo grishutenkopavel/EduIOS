@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
-class PlacesTableViewController: UIViewController {
+class SearchResultsViewController: UIViewController {
     override func viewDidLoad() {
+        super.viewDidLoad()
         print("table")
     }
 }
