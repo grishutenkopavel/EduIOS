@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     var profileButton: UIButton?
     var increaseButton: UIButton?
     var reduceButton: UIButton?
+    var searchView: SearchView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,8 @@ class MapViewController: UIViewController {
         createMapView()
         createProfileButton()
         createIncreaseButton()
+        createReduceButton()
+        createSearchView()
     }
     
     func createMapView() {
@@ -70,6 +73,7 @@ class MapViewController: UIViewController {
                                                 width: increaseButtonWidth, height: increaseButtonHeight))
         increaseButton?.setImage(UIImage(named: "increaseButton.png"), for: .normal)
         increaseButton?.addTarget(self, action: #selector(reduceScale(sender:)), for: .touchUpInside)
+        increaseButton?.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin, .flexibleTopMargin]
         
         if let button = increaseButton {
             view.addSubview(button)
@@ -82,5 +86,47 @@ class MapViewController: UIViewController {
                                     zoom: (mapView?.mapWindow.map.cameraPosition.zoom)! + 1.0,
                                     azimuth: 0, tilt: 0))
     }
-}
+    
+    func createReduceButton() {
+        let reduceButtonWidth = 50
+        let reduceButtonHeight = 50
+        let borderOffset = 20
+        reduceButton = UIButton()
+        reduceButton?.setImage(UIImage(named: "reduceButton.png"), for: .normal)
+        reduceButton?.addTarget(self, action: #selector(increaseScale(sender:)), for: .touchUpInside)
+        reduceButton?.translatesAutoresizingMaskIntoConstraints = false
+        
+        if let button = reduceButton {
+            view.addSubview(button)
+        }
+        let verticalConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .top, relatedBy: .equal, toItem: increaseButton, attribute: .bottom, multiplier: 1, constant: CGFloat(borderOffset))
+        let horizontalConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: CGFloat(-borderOffset))
+        let widthConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(reduceButtonWidth))
+        let heightConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(reduceButtonHeight))
+    
+        view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+    }
+    
+    @objc func increaseScale(sender: UIButton) {
+        mapView?.mapWindow.map.move(
+            with: YMKCameraPosition(target: (mapView?.mapWindow.map.cameraPosition.target)!,
+                                    zoom: (mapView?.mapWindow.map.cameraPosition.zoom)! - 1.0,
+                                    azimuth: 0, tilt: 0))
+    }
+    
+    func createSearchView() {
+        searchView = SearchView()
+        searchView?.translatesAutoresizingMaskIntoConstraints = false
 
+        if let searchView = searchView {
+            view.addSubview(searchView)
+        }
+        
+        let verticalConstraint = NSLayoutConstraint(item: searchView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -100.0)
+        let horizontalConstraint = NSLayoutConstraint(item: searchView!, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: searchView!, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: searchView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.bounds.height)
+    
+        view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+    }
+}
