@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+class PlaceViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("place")
+    }
+}
