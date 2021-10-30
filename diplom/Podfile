@@ -6,5 +6,6 @@ target 'diplom' do
   use_frameworks!
 
   pod 'YandexMapsMobile', '4.0.0-lite'
+  pod 'MultiSlider'
 
 end

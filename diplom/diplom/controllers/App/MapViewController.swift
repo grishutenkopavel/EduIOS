@@ -122,7 +122,7 @@ class MapViewController: UIViewController {
             view.addSubview(searchView)
         }
         
-        let verticalConstraint = NSLayoutConstraint(item: searchView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -100.0)
+        let verticalConstraint = NSLayoutConstraint(item: searchView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -500.0)
         let horizontalConstraint = NSLayoutConstraint(item: searchView!, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
         let widthConstraint = NSLayoutConstraint(item: searchView!, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
         let heightConstraint = NSLayoutConstraint(item: searchView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.bounds.height)
