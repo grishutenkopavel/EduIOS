@@ -5,12 +5,11 @@
 //  Created by Павел Гришутенко on 28.10.2021.
 //
 
-import Foundation
 import UIKit
 
 class PlaceViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("place")
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    print("place")
+  }
 }
