@@ -10,6 +10,7 @@ import YandexMapsMobile
 
 class MapViewController: UIViewController {
   var mapView: YMKMapView?
+  var searchView: SearchView?
   lazy var profileButton: UIButton = {
     let profileButtonWidth = 50
     let profileButtonHeight = 50
@@ -31,8 +32,14 @@ class MapViewController: UIViewController {
     button.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin, .flexibleTopMargin]
     return button
   }()
-  var reduceButton: UIButton?
-  var searchView: SearchView?
+  lazy var reduceButton: UIButton = {
+    let button = UIButton()
+    button.setImage(UIImage(named: "reduceButton.png"), for: .normal)
+    button.addTarget(self, action: #selector(increaseScale(sender:)), for: .touchUpInside)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return button
+  }()
+
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,7 +50,7 @@ class MapViewController: UIViewController {
     createMapView()
     view.addSubview(profileButton)
     view.addSubview(increaseButton)
-    createReduceButton()
+    setupReduceButton()
     createSearchView()
   }
     
@@ -75,25 +82,6 @@ class MapViewController: UIViewController {
                                                         azimuth: 0,
                                                         tilt: 0))
     }
-  func createReduceButton() {
-    let reduceButtonWidth = 50
-    let reduceButtonHeight = 50
-    let borderOffset = 20
-    reduceButton = UIButton()
-    reduceButton?.setImage(UIImage(named: "reduceButton.png"), for: .normal)
-    reduceButton?.addTarget(self, action: #selector(increaseScale(sender:)), for: .touchUpInside)
-    reduceButton?.translatesAutoresizingMaskIntoConstraints = false
-        
-    if let button = reduceButton {
-      view.addSubview(button)
-    }
-    let verticalConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .top, relatedBy: .equal, toItem: increaseButton, attribute: .bottom, multiplier: 1, constant: CGFloat(borderOffset))
-    let horizontalConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: CGFloat(-borderOffset))
-    let widthConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(reduceButtonWidth))
-    let heightConstraint = NSLayoutConstraint(item: reduceButton!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(reduceButtonHeight))
-    
-    view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-  }
     
   @objc func increaseScale(sender: UIButton) {
     mapView?.mapWindow.map.move(with: YMKCameraPosition(target: (mapView?.mapWindow.map.cameraPosition.target)!,
@@ -101,7 +89,19 @@ class MapViewController: UIViewController {
                                                         azimuth: 0,
                                                         tilt: 0))
     }
+  func setupReduceButton() {
+    view.addSubview(reduceButton)
     
+    let reduceButtonWidth = 50
+    let reduceButtonHeight = 50
+    let borderOffset = 20
+    let verticalConstraint = NSLayoutConstraint(item: reduceButton, attribute: .top, relatedBy: .equal, toItem: increaseButton, attribute: .bottom, multiplier: 1, constant: CGFloat(borderOffset))
+    let horizontalConstraint = NSLayoutConstraint(item: reduceButton, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: CGFloat(-borderOffset))
+    let widthConstraint = NSLayoutConstraint(item: reduceButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(reduceButtonWidth))
+    let heightConstraint = NSLayoutConstraint(item: reduceButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: CGFloat(reduceButtonHeight))
+    
+    view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+  }
   func createSearchView() {
     searchView = SearchView()
     searchView?.translatesAutoresizingMaskIntoConstraints = false

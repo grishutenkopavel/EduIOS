@@ -15,6 +15,7 @@ enum SearchViewPosition: Double {
 
 class SearchView: UIView {
   var searchBar: UISearchBar?
+  var tableView: UITableView?
   var multiSlider: MultiSlider = {
     let multiSlider = MultiSlider()
     multiSlider.minimumValue = 1
@@ -24,6 +25,7 @@ class SearchView: UIView {
     multiSlider.frame = CGRect(origin: CGPoint(x: 100, y: 100), size: CGSize(width: 200, height: 50))
     return multiSlider
   }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupViews()
@@ -56,7 +58,11 @@ class SearchView: UIView {
     }
     
     private func createSearchButton(){
-        
+      tableView = UITableView(frame: CGRect(x: 0, y: 60,
+                                            width: frame.minX, height: frame.maxY) )
+      guard let tableView = tableView else { return }
+      tableView.dataSource = self
+      addSubview(tableView)
     }
     
     private func createSearchOptionsMenu(){
@@ -64,3 +70,20 @@ class SearchView: UIView {
     }
 }
 
+extension SearchView: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let identifier = "cell"
+    var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+    if let cell = cell {
+      return cell
+    }
+    cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
+    return cell!
+  }
+  
+  
+}
