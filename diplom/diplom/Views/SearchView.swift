@@ -57,33 +57,10 @@ class SearchView: UIView {
         addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
     
-    private func createSearchButton(){
-      tableView = UITableView(frame: CGRect(x: 0, y: 60,
-                                            width: frame.minX, height: frame.maxY) )
-      guard let tableView = tableView else { return }
-      tableView.dataSource = self
-      addSubview(tableView)
+    private func createSearchButton() {
     }
     
-    private func createSearchOptionsMenu(){
+    private func createSearchOptionsMenu() {
       addSubview(multiSlider)
     }
-}
-
-extension SearchView: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let identifier = "cell"
-    var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
-    if let cell = cell {
-      return cell
-    }
-    cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
-    return cell!
-  }
-  
-  
 }
