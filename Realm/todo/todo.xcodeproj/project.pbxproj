@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78017E8E279494C700543445 /* db.realm in Resources */ = {isa = PBXBuildFile; fileRef = 78017E8D279494C700543445 /* db.realm */; };
 		7822051C27934125006C877B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822051B27934125006C877B /* AppDelegate.swift */; };
 		7822051E27934125006C877B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822051D27934125006C877B /* SceneDelegate.swift */; };
 		7822052027934125006C877B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822051F27934125006C877B /* ViewController.swift */; };
@@ -15,7 +16,6 @@
 		7822052827934126006C877B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7822052627934126006C877B /* LaunchScreen.storyboard */; };
 		787946DB279446CF001E01C6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787946DA279446CF001E01C6 /* Task.swift */; };
 		787946DD279448DC001E01C6 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787946DC279448DC001E01C6 /* TaskList.swift */; };
-		787946DF279487A8001E01C6 /* db.realm in Resources */ = {isa = PBXBuildFile; fileRef = 787946DE279487A8001E01C6 /* db.realm */; };
 		7D2350C6CE105AE100D6B330 /* Pods_todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EF9D016481D0BA322B81C6 /* Pods_todo.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +23,7 @@
 		12230163DE6D2F5D1E2743D9 /* Pods-todo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo.release.xcconfig"; path = "Target Support Files/Pods-todo/Pods-todo.release.xcconfig"; sourceTree = "<group>"; };
 		162423D3A5B39F934C9C8D30 /* Pods-todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo.debug.xcconfig"; path = "Target Support Files/Pods-todo/Pods-todo.debug.xcconfig"; sourceTree = "<group>"; };
 		28EF9D016481D0BA322B81C6 /* Pods_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78017E8D279494C700543445 /* db.realm */ = {isa = PBXFileReference; lastKnownFileType = text; path = db.realm; sourceTree = "<group>"; };
 		7822051827934125006C877B /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7822051B27934125006C877B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7822051D27934125006C877B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		7822052927934126006C877B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		787946DA279446CF001E01C6 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		787946DC279448DC001E01C6 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
-		787946DE279487A8001E01C6 /* db.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.realm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,17 +95,9 @@
 				7822052427934126006C877B /* Assets.xcassets */,
 				7822052627934126006C877B /* LaunchScreen.storyboard */,
 				7822052927934126006C877B /* Info.plist */,
-				787946E027948A5E001E01C6 /* data base */,
+				78017E8D279494C700543445 /* db.realm */,
 			);
 			path = todo;
-			sourceTree = "<group>";
-		};
-		787946E027948A5E001E01C6 /* data base */ = {
-			isa = PBXGroup;
-			children = (
-				787946DE279487A8001E01C6 /* db.realm */,
-			);
-			path = "data base";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7822052827934126006C877B /* LaunchScreen.storyboard in Resources */,
-				787946DF279487A8001E01C6 /* db.realm in Resources */,
+				78017E8E279494C700543445 /* db.realm in Resources */,
 				7822052527934126006C877B /* Assets.xcassets in Resources */,
 				7822052327934125006C877B /* Main.storyboard in Resources */,
 			);
