@@ -10,16 +10,13 @@ import RealmSwift
 
 class ViewController: UIViewController {
   var tableView: UITableView?
-  var taskList: [Object]?
-//  var addButton: UIButton?
+  var taskList: TaskList?
+  var realm: Realm?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-    
-    
-  }
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
+    setupDB()
   }
   
   func setupUI() {
@@ -28,82 +25,133 @@ class ViewController: UIViewController {
   }
   
   func setTableView() {
-    tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+    tableView = UITableView()
     tableView?.dataSource = self
+    tableView?.delegate = self
     if let tableView = tableView {
       view.addSubview(tableView)
     }
+    guard let tableView = tableView else { return }
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
   }
   
   func setAddButton() {
     let navigationItem = UINavigationItem()
     navigationItem.title = "ToDo"
-    let refreshButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewTask))
-    navigationItem.rightBarButtonItem = refreshButton
+    let addButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewTask))
+    navigationItem.rightBarButtonItem = addButton
     navigationController?.navigationBar.items = [navigationItem]
-
   }
   
   @objc func createNewTask() {
-    let alert = UIAlertController(title: "Great Title", message: "Please input something", preferredStyle: .alert)
-    let action = UIAlertAction(title: "Name Input", style: .default) { (alertAction) in
-//      let textField = alert.textFields![0] as UITextField
+    let alert = UIAlertController(title: "New task", message: "Please input something", preferredStyle: .alert)
+    let action = UIAlertAction(title: "Task Input", style: .default) { (alertAction) in
+      let textField = alert.textFields![0] as UITextField
+      self.saveTasksInDB(text: textField.text)
     }
     alert.addTextField { (textField) in
-    textField.placeholder = "Enter your name"
+    textField.placeholder = "Enter your task"
     }
     alert.addAction(action)
     present(alert, animated: true, completion: nil)
   }
   
-  func saveTasksInDB() {
-    let taskList = TaskList()
-    taskList.name = "task list 2"
-    let task1 = Task()
-    task1.name = "Name1"
-    task1.notes = "hello"
-    let task2 = Task()
-    task2.name = "Name2"
-    task2.notes = "from"
-    let task3 = Task()
-    task3.name = "Name3"
-    task3.notes = "Realm"
-    taskList.tasks.append(objectsIn: [task1, task2, task3])
+  func setupDB() {
     let path = Bundle.main.path(forResource: "db", ofType: "realm")
     guard let path = path else { return }
     let dbURL = URL(fileURLWithPath: path)
-    let realm = try? Realm(fileURL: dbURL)
-    if let realm = realm {
-      try! realm.write{
-          print("was here")
-          realm.add(taskList)
-        }
+    realm = try? Realm(fileURL: dbURL)
+    
+    let firstTaskList = realm?.objects(TaskList.self).first
+    if firstTaskList == nil {
+      createNewTaskList()
+    }
+    else {
+      taskList = firstTaskList
     }
   }
   
-  func deleteTasksInDB() {
-    
+  func createNewTaskList() {
+    taskList = TaskList()
+    taskList?.name = "task list"
+    if let realm = realm, let taskList = taskList {
+      try! realm.write{
+        realm.add(taskList)
+      }
+    }
   }
   
+  func saveTasksInDB(text: String?) {
+    guard let text = text else { return }
+    let newTask = Task()
+    newTask.name = "newTask"
+    newTask.notes = text
+    
+    if let realm = realm, let taskList = taskList {
+      try! realm.write{
+        taskList.tasks.append(newTask)
+      }
+    }
+    updateTable()
+  }
+  
+  func deleteTasksInDB(index: Int) {
+    if let realm = realm, let taskList = taskList {
+      try! realm.write{
+        realm.delete(taskList.tasks[index])
+      }
+    }
+    updateTable()
+  }
+  
+  func updateTable() {
+    tableView?.reloadData()
+  }
 }
 
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return (taskList?.tasks.count)!
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let identifier = "task"
     var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
-    if let cell = cell {
-      return cell
+    if cell == nil {
+      cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
     }
-    cell = UITableViewCell(style: .default, reuseIdentifier: identifier)
     guard let cell = cell else {
       return UITableViewCell()
     }
-    cell.textLabel?.text = "hello"
+    if let text = taskList?.tasks[indexPath.row].notes {
+      cell.textLabel?.text = text
+    }
+
     return cell
   }
   
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      deleteTasksInDB(index: indexPath.item)
+    }
+  }
+  
+}
+
+extension ViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView,
+                 leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let action = UIContextualAction(style: .normal, title: "Complete") { [weak self] (action, view, completionHandler) in
+      //TODO: add strikethrough text
+      completionHandler(true)
+    }
+    action.backgroundColor = .systemBlue
+    return UISwipeActionsConfiguration(actions: [action])
+  }
 }
