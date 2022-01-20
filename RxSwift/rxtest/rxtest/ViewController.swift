@@ -20,7 +20,11 @@ class ViewController: UIViewController, UITableViewDataSource {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
+    let timeInterval = DispatchTimeInterval.milliseconds(5000)
     searchBar.rx.text
+      .throttle(timeInterval, scheduler: MainScheduler.instance)
+      .distinctUntilChanged()
+      .filter{ $0?.count ?? -1 > 0 }
       .subscribe (onNext: { [unowned self] (query) in
         guard let query = query else { return }
         self.shownCities = self.allCities.filter { $0.hasPrefix(query) }
